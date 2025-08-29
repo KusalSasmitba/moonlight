@@ -1,0 +1,24 @@
+name: Run Moonlight MD Bot
+
+on:
+  workflow_dispatch:   # Manual start button
+  push:
+    branches: [ "main" ]   # push උනහම auto run වෙනවා
+
+jobs:
+  run-bot:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18   # Node.js version
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Start bot
+        run: node index.js
